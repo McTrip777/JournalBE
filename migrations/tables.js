@@ -5,6 +5,7 @@ exports.up = function (knex, Promise) {
 
         tbl.string('email', 255)
             .notNullable()
+            .unique()
 
         tbl.string('username', 255)
             .notNullable()
@@ -13,6 +14,10 @@ exports.up = function (knex, Promise) {
         tbl.string('password', 255)
             .notNullable()
 
+        tbl.timestamp('created_at')
+            .defaultTo(knex.fn.now())
+        tbl.timestamp('updated_at')
+            .defaultTo(knex.fn.now())
     })
 
         .createTable('journals', (tbl) => {
@@ -25,7 +30,9 @@ exports.up = function (knex, Promise) {
             tbl.string('content') //JOURNAL content
                 .notNullable() //required
 
-            tbl.date('date', 255) //Date
+            tbl.timestamp('date')
+                .defaultTo(knex.fn.now())
+                .notNullable() //required
 
             tbl.integer('user_id').notNullable()
                 .unsigned()

@@ -16,7 +16,7 @@ router.post('/register', async (req, res) => {
             let saved = await Users.add(user)
             res.status(201).json(saved)
         } else {
-            res.status(404).send("fill out the required fields")
+            res.status(404).send("Fill out the required fields")
         }
     } catch (error) {
         res.status(500).json(error)
