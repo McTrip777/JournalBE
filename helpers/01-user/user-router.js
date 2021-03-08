@@ -37,9 +37,9 @@ router.get('/:user_id/journals/', async (req, res) => {
     }
 })
 
-router.post('/:journal_id/journals', async (req, res) => {
+router.post('/:user_id/journals', async (req, res) => {
     try {
-        const journal = await Users.addJournalToUser({ title: req.body.title, content: req.body.content, date: req.body.date, user_id: req.params.journal_id })
+        const journal = await Users.addJournalToUser({ title: req.body.title, content: req.body.content, date: req.body.date, user_id: req.params.user_id })
         if (journal) {
             res.status(200).json({ journal })
         } else {
